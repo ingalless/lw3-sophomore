@@ -101,9 +101,9 @@ export default function Home() {
     }
 
     if (needSigner) {
-      return web3Provider.getSigner();
+      return web3Provider.getSigner() as any;
     }
-    return web3Provider;
+    return web3Provider as any;
   };
 
   /**
