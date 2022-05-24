@@ -18,7 +18,7 @@ export default function Home() {
   // tokenIdsMinted keeps track of the number of tokenIds that have been minted
   const [tokenIdsMinted, setTokenIdsMinted] = useState("0");
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
-  const web3ModalRef = useRef();
+  const web3ModalRef = useRef() as any;
 
   /**
    * presaleMint: Mint an NFT during the presale
@@ -197,7 +197,7 @@ export default function Home() {
       if (address.toLowerCase() === _owner.toLowerCase()) {
         setIsOwner(true);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err.message);
     }
   };
@@ -231,8 +231,6 @@ export default function Home() {
    * A `Signer` is a special type of Provider used in case a `write` transaction needs to be made to the blockchain, which involves the connected account
    * needing to make a digital signature to authorize the transaction being sent. Metamask exposes a Signer API to allow your website to
    * request signatures from the user using Signer functions.
-   *
-   * @param {*} needSigner - True if you need the signer, default false otherwise
    */
   const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
@@ -248,10 +246,10 @@ export default function Home() {
     }
 
     if (needSigner) {
-      const signer = web3Provider.getSigner();
+      const signer = web3Provider.getSigner() as any;
       return signer;
     }
-    return web3Provider;
+    return web3Provider as any;
   };
 
   // useEffects are used to react to changes in state of the website
