@@ -268,10 +268,11 @@ export default function Home() {
       connectWallet();
 
       // Check if presale has started and ended
-      const _presaleStarted = checkIfPresaleStarted();
-      if (_presaleStarted) {
-        checkIfPresaleEnded();
-      }
+      checkIfPresaleStarted().then(started => {
+        if (started) {
+          checkIfPresaleEnded();
+        }
+      });
 
       getTokenIdsMinted();
 
